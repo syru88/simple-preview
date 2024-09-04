@@ -1,5 +1,6 @@
 package dev.marsellus.simplepreview
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -38,7 +39,25 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
 }
 
-@Preview(showBackground = true)
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    showBackground = true,
+    backgroundColor = 0xFFFFFFFF,
+    name = "Day",
+)
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true,
+    backgroundColor = 0xFF000000,
+    name = "Night",
+)
+@Target(
+    AnnotationTarget.ANNOTATION_CLASS,
+    AnnotationTarget.FUNCTION,
+)
+annotation class DayNightPreview
+
+@DayNightPreview
 @Composable
 fun GreetingPreview() {
     SimplePreviewTheme {
